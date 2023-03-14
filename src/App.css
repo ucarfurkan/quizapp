@@ -16,6 +16,17 @@ body {
     font-size: 2rem;
 }
 
+.score {
+    padding: 1rem;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.submit-button {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
 
 @media (max-width: 768px) {
     .navbar-name {
