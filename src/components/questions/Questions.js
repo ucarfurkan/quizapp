@@ -6,9 +6,10 @@ function Questions() {
     const [questions, setQuestions] = React.useState([])
     const [selectedAnswers, setSelectedAnswers] = React.useState([])
     const [score, setScore] = React.useState(null);
+    const [isOver, setIsOver] = React.useState(false);
 
     React.useEffect(() => {
-        getQuestions({ limit: 5 }).then((questions) => {
+        getQuestions({ limit: 10 }).then((questions) => {
             setQuestions(questions)
         });
     }, [])
@@ -33,13 +34,28 @@ function Questions() {
                 }
             }
         }
+        setIsOver(true);
+    }
+
+    function resetGame() {
+        setQuestions([]);
+        setSelectedAnswers([]);
+        setScore(null);
+        setIsOver(false);
+        getQuestions({ limit: 10 }).then((questions) => {
+            setQuestions(questions)
+        });
     }
 
     return (
         <div className="question justify-content-center">
             {mappedQuestions}
             <div className="d-flex justify-content-between m-2">
-                <button className="btn btn-info submit-button" onClick={checkAnswers}>Submit Questions</button>
+                {!isOver ? (
+                    <button className="btn btn-info submit-button" onClick={checkAnswers}>Submit Questions</button>
+                ) : (
+                    <button className="btn btn-primary reset-button" onClick={resetGame}>Reset Game</button>
+                )}
                 {score !== null && <span className="score bg-secondary">Score : {score}</span>}
             </div>
         </div>
