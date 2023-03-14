@@ -4,7 +4,9 @@ import { nanoid } from 'nanoid'
 function Question(props) {
     const { question, setSelectedAnswers, selectedAnswers } = props
     const [options, setOptions] = React.useState([])
-    const [answer, setAnswer] = React.useState({ id: question.id, selectedAnswer: null })
+    const [answer, setAnswer] = React.useState({ id: question.id, selectedAnswer: null, isCorrect: null })
+
+    
     React.useEffect(() => {
         // shuffle options
         const optionList = [question.correctAnswer, ...question.incorrectAnswers]
@@ -47,8 +49,10 @@ function Question(props) {
         )
     })
 
+    const cardClassName = "card border-dark mt-2" + (answer.isCorrect === true ? " bg-success" : (answer.isCorrect === false ? " bg-danger" : ""))
+
     return (
-        <div className="card border-dark mt-2" id={nanoid()}>
+        <div className={cardClassName} id={nanoid()}>
             <div className="card-header category">
                 {question.category}
             </div>

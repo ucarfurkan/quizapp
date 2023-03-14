@@ -18,12 +18,18 @@ function Questions() {
     })
 
     function checkAnswers(){
-        console.log(questions)
         setScore(0)
         for(let i=0; i<questions.length;i++){
-            if(selectedAnswers[i].selectedAnswer !== null && selectedAnswers[i].id === questions[i].id){
+            if(selectedAnswers[i].id === questions[i].id){
                 if(selectedAnswers[i].selectedAnswer === questions[i].correctAnswer){
                     setScore(prev => prev+1)
+                    selectedAnswers[i].isCorrect = true;
+                }
+                else if(selectedAnswers[i].selectedAnswer === null){
+                    
+                }
+                else{
+                    selectedAnswers[i].isCorrect = false;
                 }
             }
         }
