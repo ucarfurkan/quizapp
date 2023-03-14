@@ -6,7 +6,8 @@ function Question(props) {
     const [options, setOptions] = React.useState([])
     const [answer, setAnswer] = React.useState({ id: question.id, selectedAnswer: null, isCorrect: null })
 
-    
+    console.log(question)
+
     React.useEffect(() => {
         // shuffle options
         const optionList = [question.correctAnswer, ...question.incorrectAnswers]
@@ -59,6 +60,7 @@ function Question(props) {
             <div className="card-body">
                 <p className="card-text question">{question.question}</p>
                 {getOptions}
+                 {answer.isCorrect === false && <div>Correct Answer: {question.correctAnswer}</div>}
             </div>
         </div>
     )
