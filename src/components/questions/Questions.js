@@ -1,4 +1,5 @@
 import React from "react"
+import Question from "./Question";
 import { getQuestions } from "@trivia-api/fetch";
 
 function Questions() {
@@ -10,11 +11,13 @@ function Questions() {
           });
     }, [])
 
-    console.log(questions)
+    const mappedQuestions = questions.map(quest => {
+        return <Question key={quest.id} question={quest} />
+    })
 
     return (
         <div className="question justify-content-center">
-            
+            {mappedQuestions}
         </div>
     )
 }
