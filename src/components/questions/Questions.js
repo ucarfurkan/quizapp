@@ -33,6 +33,7 @@ function Questions() {
                     selectedAnswers[i].isCorrect = false;
                 }
             }
+            selectedAnswers[i].isChecked = true;
         }
         setIsOver(true);
     }

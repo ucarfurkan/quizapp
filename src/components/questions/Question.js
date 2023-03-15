@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid'
 function Question(props) {
     const { question, setSelectedAnswers, selectedAnswers } = props
     const [options, setOptions] = React.useState([])
-    const [answer, setAnswer] = React.useState({ id: question.id, selectedAnswer: null, isCorrect: null })
+    const [answer, setAnswer] = React.useState({ id: question.id, selectedAnswer: null, isCorrect: null, isChecked: false })
 
     console.log(question)
 
@@ -44,6 +44,7 @@ function Question(props) {
                         const newAnswer = { ...answer, selectedAnswer: e.target.value }
                         setAnswer(newAnswer)
                     }}
+                    disabled={answer.isChecked}
                 />
                 <label className="form-check-label" htmlFor={option}>{option}</label>
             </div>
